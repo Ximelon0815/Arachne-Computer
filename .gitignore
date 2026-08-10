@@ -1,0 +1,35 @@
+# ============================================================
+#  Arachne 电脑终端 - 游戏内内容仓库
+#  仅跟踪游戏内使用的内容: apricity/ (GUI) + kubejs/ (脚本/资源)
+# ============================================================
+
+# 工作区脚本 / skill / 文档 (不入库)
+/sync_to_game.ps1
+/SKILL.md
+/apricity-skill.md
+/Arachne.png
+/电脑kjs.zip
+
+# 参考网站与浏览器预览 (非游戏内内容)
+/参考/
+/浏览器预览/
+
+# 开发工具与调试 (非游戏内内容)
+/tools/
+/aui_debug/
+
+# 日志
+/logs/
+
+# IDE / 编辑器
+.idea/
+.vscode/
+*.iml
+*.code-workspace
+
+# 系统与临时文件
+Thumbs.db
+Desktop.ini
+*.tmp
+*.bak
+*.orig

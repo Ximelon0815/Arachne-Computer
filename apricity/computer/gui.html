@@ -1,0 +1,708 @@
+<meta name="aui-viewport" content="mode=fixed,width=640,height=360,scale=fit">
+<meta name="aui-font-mode" content="web">
+<meta name="aui-mouse-events" content="intercept">
+<body>
+<!-- ============================================
+     Arachne - Win95 桌面 GUI
+     AUI 要求: 不能有 DOCTYPE/html/head, 直接 body 开头
+     ============================================ -->
+
+<!-- ====== 桌面区域 ====== -->
+<div class="desktop" id="desktopArea">
+    <div class="desktop-icon" id="iconFileMgr" title="我的电脑">
+        <div class="icon-img"><img src="icons/020.png" width="32" height="32" alt=""></div>
+        <span class="icon-label">我的电脑</span>
+    </div>
+    <div class="desktop-icon" id="iconCraft" title="工作台">
+        <div class="icon-img"><img src="icons/130.png" width="32" height="32" alt=""></div>
+        <span class="icon-label">工作台</span>
+    </div>
+    <div class="desktop-icon" id="iconDocs" title="文档">
+        <div class="icon-img"><img src="icons/038.png" width="32" height="32" alt=""></div>
+        <span class="icon-label">文档</span>
+    </div>
+</div>
+
+<!-- ====== 文件管理器窗口 ====== -->
+<div class="window-overlay" id="fileWinOverlay">
+    <div class="win95-window">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img id="fileTitleIcon" src="icons/039.png" width="14" height="14" style="vertical-align:middle">
+                <span id="fileTitleText">文件管理器</span>
+            </div>
+            <div class="win-titlebar-btns">
+                <div class="win-min" id="btnFileMin">_</div>
+                <div class="win-close" id="btnFileClose">×</div>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span>文件(F)</span><span>编辑(E)</span><span>查看(V)</span><span>帮助(H)</span>
+        </div>
+        <div class="win-toolbar">
+            <span class="addr-label">地址:</span>
+            <input class="addr-input" value="C:\Arachne" readonly>
+        </div>
+        <div class="win-body">
+            <div class="win-tree sunken-panel" id="fileTree">
+                <div class="win-tree-item selected" data-panel="mycomp" style="background-image:url('icons/020.png');background-size:16px 16px;background-repeat:no-repeat;background-position:left center">我的电脑</div>
+                <div class="win-tree-item" data-panel="craft" style="background-image:url('icons/130.png');background-size:16px 16px;background-repeat:no-repeat;background-position:left center">工作台</div>
+                <div class="win-tree-item" data-panel="docs" style="background-image:url('icons/039.png');background-size:16px 16px;background-repeat:no-repeat;background-position:left center">文档</div>
+            </div>
+            <div class="win-list sunken-panel" id="fileList">
+                <div class="win-list-header">
+                    <div class="col-name">名称</div><div class="col-size">大小</div><div class="col-type">类型</div>
+                </div>
+                <div class="a5 disabled ico-hdd">
+                    <div class="col-name">(C:)</div><div class="col-size">2.1GB</div><div class="col-type">本地磁盘</div>
+                </div>
+                <div class="a5 disabled ico-control">
+                    <div class="col-name">控制面板</div><div class="col-size"></div><div class="col-type">系统文件夹</div>
+                </div>
+                <div class="a5 disabled ico-printer">
+                    <div class="col-name">打印机</div><div class="col-size"></div><div class="col-type">系统文件夹</div>
+                </div>
+                <div class="a5 ico-floppy floppy-item">
+                    <div class="col-name">读取软盘</div><div class="col-size"></div><div class="col-type"></div>
+                </div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <span class="status-bar-field" id="fileStatus">桌面</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== 工作台窗口 ====== -->
+<div class="window-overlay" id="craftWinOverlay">
+    <div class="win95-window">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img id="craftTitleIcon" src="icons/130.png" width="14" height="14" style="vertical-align:middle">
+                <span id="craftTitleText">工作台</span>
+            </div>
+            <div class="win-titlebar-btns">
+                <div class="win-min" id="btnCraftMin">_</div>
+                <div class="win-close" id="btnCraftClose">×</div>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span>文件(F)</span><span>编辑(E)</span><span>查看(V)</span><span>帮助(H)</span>
+        </div>
+        <div class="win-body">
+            <div class="win-tree sunken-panel" id="craftTree">
+                <div class="win-tree-item" data-panel="mycomp" style="background-image:url('icons/020.png');background-size:16px 16px;background-repeat:no-repeat;background-position:left center">我的电脑</div>
+                <div class="win-tree-item selected" data-panel="craft" style="background-image:url('icons/130.png');background-size:16px 16px;background-repeat:no-repeat;background-position:left center">工作台</div>
+                <div class="win-tree-item" data-panel="docs" style="background-image:url('icons/039.png');background-size:16px 16px;background-repeat:no-repeat;background-position:left center">文档</div>
+            </div>
+            <div class="craft-panel sunken-panel" id="craftPanel">
+                <div class="a5 ico-gear ticket-item">
+                    <div class="col-name">车票转化.exe</div><div class="col-size">2KB</div><div class="col-type">应用程序</div>
+                </div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <span class="status-bar-field" id="craftStatus">工作台</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== 文档窗口 ====== -->
+<div class="window-overlay" id="docsWinOverlay">
+    <div class="win95-window">
+        <div class="win-titlebar">
+            <div class="win-titlebar-left">
+                <img id="docsTitleIcon" src="icons/039.png" width="14" height="14" style="vertical-align:middle">
+                <span id="docsTitleText">文档</span>
+            </div>
+            <div class="win-titlebar-btns">
+                <div class="win-min" id="btnDocsMin">_</div>
+                <div class="win-close" id="btnDocsClose">×</div>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span>文件(F)</span><span>编辑(E)</span><span>查看(V)</span><span>帮助(H)</span>
+        </div>
+        <div class="win-toolbar">
+            <span class="addr-label">地址:</span>
+            <input class="addr-input" value="C:\Arachne" readonly>
+        </div>
+        <div class="win-body">
+            <div class="win-tree sunken-panel" id="docsTree">
+                <div class="win-tree-item" data-panel="mycomp" style="background-image:url('icons/020.png');background-size:16px 16px;background-repeat:no-repeat;background-position:left center">我的电脑</div>
+                <div class="win-tree-item" data-panel="craft" style="background-image:url('icons/130.png');background-size:16px 16px;background-repeat:no-repeat;background-position:left center">工作台</div>
+                <div class="win-tree-item selected" data-panel="docs" style="background-image:url('icons/039.png');background-size:16px 16px;background-repeat:no-repeat;background-position:left center">文档</div>
+            </div>
+            <div class="win-list sunken-panel" id="docsList">
+                <div class="win-list-header">
+                    <div class="col-name">名称</div><div class="col-size">大小</div><div class="col-type">类型</div>
+                </div>
+                <div class="a5 ico-folder">
+                    <div class="col-name">一号车厢</div><div class="col-size"></div><div class="col-type">文件夹</div>
+                </div>
+                <div class="a5 ico-folder">
+                    <div class="col-name">二号车厢</div><div class="col-size"></div><div class="col-type">文件夹</div>
+                </div>
+                <div class="a5 ico-folder">
+                    <div class="col-name">三号车厢</div><div class="col-size"></div><div class="col-type">文件夹</div>
+                </div>
+                <div class="a5 ico-folder">
+                    <div class="col-name">四号车厢</div><div class="col-size"></div><div class="col-type">文件夹</div>
+                </div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <span class="status-bar-field" id="docsStatus">文档</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== 传输动画对话框 ====== -->
+<div class="transfer-dlg" id="transferDlg">
+    <div class="win-titlebar" style="cursor:default">
+        <div class="win-titlebar-left"><span id="transferTitle">正在复制...</span></div>
+    </div>
+    <div class="transfer-body">
+        <div class="transfer-anim">
+            <div class="transfer-folder"><img src="icons/039.png" width="32" height="32"></div>
+            <div class="transfer-papers" id="transferPapers">
+                <img class="transfer-paper fly d1" src="icons/014.png" width="16" height="16" alt="">
+                <img class="transfer-paper fly d2" src="icons/014.png" width="16" height="16" alt="">
+                <img class="transfer-paper fly d3" src="icons/014.png" width="16" height="16" alt="">
+            </div>
+            <div class="transfer-folder"><img src="icons/037.png" width="32" height="32"></div>
+        </div>
+        <div class="transfer-label">从: <b>C:\Arachne\车票转化.exe</b></div>
+        <div class="transfer-label">到: <b>A:\合成结果</b></div>
+        <div class="progress-indicator"><div class="progress-indicator-bar" id="transferBar"></div></div>
+        <div class="transfer-btns"><button class="msg-btn" id="btnTransferCancel">取消</button></div>
+    </div>
+</div>
+
+<!-- ====== 软盘读取加载对话框 (与合成加载窗口同款样式) ====== -->
+<div class="transfer-dlg" id="floppyDlg">
+    <div class="win-titlebar" style="cursor:default">
+        <div class="win-titlebar-left"><span id="floppyTitle">正在读取软盘...</span></div>
+    </div>
+    <div class="transfer-body">
+        <div class="transfer-label" id="floppyStatus">正在检测可读取内容</div>
+        <div class="progress-indicator"><div class="progress-indicator-bar" id="floppyBar"></div></div>
+        <div class="transfer-btns"><button class="msg-btn" id="btnFloppyCancel">取消</button></div>
+    </div>
+</div>
+
+<!-- ====== 消息对话框 ====== -->
+<div class="msg-dlg" id="msgDlg">
+    <div class="win-titlebar" style="cursor:default">
+        <div class="win-titlebar-left"><span id="msgTitle">信息</span></div>
+    </div>
+    <div class="msg-body">
+        <div class="msg-icon"><img id="msgIcon" src="icons/020.png" width="32" height="32"></div>
+        <div class="msg-content"><p id="msgText"></p></div>
+    </div>
+    <div class="msg-btns"><button class="msg-btn" id="btnMsgOk">确定</button></div>
+</div>
+
+<!-- ====== 底部任务栏 ====== -->
+<div class="bottombar">
+    <div class="start-btn" id="btnStart">
+        <span>开始</span>
+    </div>
+    <div class="taskbar-btns" id="taskbarBtns">
+        <div class="task-btn" id="taskFile" style="display:none">
+            <img src="icons/039.png" width="14" height="14" alt="">
+        </div>
+        <div class="task-btn" id="taskCraft" style="display:none">
+            <img src="icons/130.png" width="14" height="14" alt="">
+        </div>
+        <div class="task-btn" id="taskDocs" style="display:none">
+            <img src="icons/039.png" width="14" height="14" alt="">
+        </div>
+    </div>
+    <div class="bottombar-spacer"></div>
+    <div class="clock-box"><span class="clock-text" id="clockText">--:--</span></div>
+
+    <!-- 开始菜单 -->
+    <div class="start-menu" id="startMenu">
+        <div class="menu-items">
+            <div class="menu-item" data-action="craft">
+                <img src="icons/130.png" width="16" height="16" alt="">
+                <span class="mi-label">工作台</span>
+            </div>
+            <div class="menu-item" data-action="docs">
+                <img src="icons/038.png" width="16" height="16" alt="">
+                <span class="mi-label">文档</span>
+            </div>
+            <div class="menu-sep"></div>
+            <div class="menu-item disabled">
+                <img src="icons/107.png" width="16" height="16" alt="">
+                <span class="mi-label">设置</span>
+            </div>
+            <div class="menu-item disabled">
+                <img src="icons/128.png" width="16" height="16" alt="">
+                <span class="mi-label">帮助</span>
+            </div>
+            <div class="menu-sep"></div>
+            <div class="menu-item" data-action="close">
+                <span class="mi-label">关闭系统...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== FX 覆盖层 (CRT 效果: 横纹 + 暗角 + 闪烁) ====== -->
+<div id="fxOverlay"><div id="fxTear"></div><div id="fxNoise"></div></div>
+
+<!-- ====== 读取成功黑屏覆盖层 (Arachne 网盘) ====== -->
+<div id="blackout"><div id="blackoutText"></div></div>
+</body>
+
+<!-- AUI 要求: style / script 必须放在 </body> 后面 -->
+<!--
+  CSS: 文档说支持 <style src="file.css">, 但 1.1.6-dev 实测不生效
+       所以干脆用内联 CSS (稳妥)
+  @font-face: 1.1.6-dev 时会让整个 CSS 失效, 1.1.9 修好了, 现在能放心用
+  字体来源: 98.css (https://github.com/jdan/98.css) Pixelated MS Sans Serif
+  JS:  文档说支持多个 <script src>, 但 1.1.6-dev 只加载第一个
+       所以合并成单文件 gui.js (稳妥)
+-->
+<style>
+/* ============================================
+   Arachne Win95 桌面样式 (内联版)
+   参照 98.css (https://github.com/jdan/98.css) 的设计理念写的
+   字体: 用的就是 98.css 的 Pixelated MS Sans Serif (AUI 1.1.9+)
+   ============================================ */
+
+/* ---- 像素字体 (98.css 风格) ---- */
+/* AUI 的 @font-face 只认 font-family + 第一个 src url(), 其它 weight/style 描述符全忽略,
+   而且只支持 ttf/otf (Java AWT TRUETYPE_FONT), 不支持 woff2。
+   所以常规/粗体得用不同的 family 名来注册。 */
+@font-face {
+  font-family:"Pixel Sans";
+  src:url("fonts/ms_sans_serif.ttf")
+}
+@font-face {
+  font-family:"Pixel Sans Bold";
+  src:url("fonts/ms_sans_serif_bold.ttf")
+}
+@font-face {
+  font-family:"Pixel Sans CN";
+  src:url("fonts/fusion_pixel_12px_zh_hans.ttf")
+}
+
+/* ---- 全局 ---- */
+html {
+  margin:0; padding:0; border:0; overflow:hidden;
+  background-color:#008080
+}
+body {
+  width:100%; height:100%; margin:0; padding:0; border:0;
+  display:flex; flex-direction:column;
+  background-color:#008080;
+  font-family:"Pixel Sans", "Pixel Sans CN", "Microsoft YaHei", "SimHei", sans-serif;
+  font-size:11px; color:#000;
+  user-select:none; -webkit-user-select:none;
+  outline:0; overflow:hidden; position:relative
+}
+
+/* ---- 桌面 (竖向排列) ---- */
+.desktop {
+  height:200px; flex-shrink:0; flex-grow:1; display:flex; flex-direction:column;
+  justify-content:flex-start; align-items:flex-start;
+  padding:10px 16px 12px 0;   /* 左侧不留 padding, 由图标 margin-left 单一控制 */
+  background-color:#008080
+}
+.desktop-icon {
+  width:48px; flex-shrink:0; text-align:center; cursor:pointer;
+  padding:0; margin:3px 0 3px 10px;   /* margin-left 决定选择框距屏幕左侧 */
+  display:flex; flex-direction:column; align-items:center
+}
+.desktop-icon.selected { background-color:#000080 }
+.desktop-icon.selected .icon-label { color:#fff }
+/* AUI 的 flex 子元素只有 align-items:center 时才会待在父框里 (实测偏了 -8px);
+   block/absolute 子元素会被甩到文档原点。所以用 align-items:center + margin-left:8
+   把偏移补回来, 让图标/文字在选择框里水平居中。
+   垂直方向: AUI 的 flex 子项会无视父 padding, 所以用 margin-top/bottom 控制
+   上下间距, 让图标顶和文字底到选择框边缘对称居中。 */
+.icon-img {
+  margin:6px 0 2px 0; line-height:0; text-align:center;
+  height:28px; overflow:visible
+}
+/* img 的 inline-block 会往上偏 6px (基线问题), 用 margin-top:6 下移让图标底部
+   离文本 2px; icon-img 固定 28px 高免得被撑高 (选择框高度不变) */
+.icon-img img {
+  width:28px; height:28px; display:inline-block; vertical-align:top;
+  margin:6px 0 0 21px
+}
+/* 仅工作台图标额外下移 1px */
+#iconCraft .icon-img img { margin-top:7px }
+.icon-label {
+  display:inline-block; font-size:11px; text-align:center; color:#fff;
+  width:48px; margin:0 0 0 10px;   /* 整体下移 3px */
+  line-height:1.2
+}
+
+/* ---- 底部任务栏 ---- */
+.bottombar {
+  height:18px; background-color:#c0c0c0;
+  border-top:1px solid #fff; box-shadow:0 -1px 0 #808080;
+  display:flex; flex-direction:row; align-items:center;
+  padding:0 2px 0 0; position:relative; z-index:50
+}
+.start-btn {
+  display:flex; flex-direction:row; align-items:center;
+  padding:1px 6px; cursor:pointer; background-color:#c0c0c0;
+  border-top:1px solid #fff; border-left:1px solid #fff;
+  border-right:1px solid #000; border-bottom:1px solid #000;
+  font-family:"Pixel Sans Bold", "Pixel Sans CN"; font-weight:bold; font-size:11px; height:14px
+}
+.start-btn:active, .start-btn.open {
+  border-top:1px solid #000; border-left:1px solid #000;
+  border-right:1px solid #fff; border-bottom:1px solid #fff;
+  padding:2px 5px 0 7px
+}
+.start-btn img { width:16px; height:16px }
+.taskbar-btns { display:flex; flex-direction:row; align-items:center; overflow:hidden }
+.task-btn {
+  display:flex; flex-direction:row; align-items:center;
+  background-color:#c0c0c0; cursor:pointer; margin-left:2px; padding:1px 5px;
+  border-top:1px solid #fff; border-left:1px solid #fff;
+  border-right:1px solid #000; border-bottom:1px solid #000;
+  font-size:11px; height:14px; white-space:nowrap
+}
+.task-btn img { width:14px; height:14px; flex-shrink:0 }
+.task-btn.active {
+  border-top:1px solid #000; border-left:1px solid #000;
+  border-right:1px solid #fff; border-bottom:1px solid #fff;
+  padding:2px 4px 0 6px
+}
+.bottombar-spacer { flex:1 }
+.clock-box {
+  display:flex; flex-direction:row; align-items:center;
+  border-top:1px solid #808080; border-left:1px solid #808080;
+  border-right:1px solid #fff; border-bottom:1px solid #fff;
+  padding:0 4px; background-color:#fff;
+  font-size:11px; line-height:14px; height:14px; overflow:hidden
+}
+.clock-text { font-family:"Pixel Sans Bold", "Pixel Sans CN"; font-weight:bold; font-size:11px; line-height:14px }
+
+/* ---- 开始菜单 ---- */
+.start-menu {
+  position:absolute; bottom:18px; left:0; background-color:#c0c0c0;
+  box-shadow:inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf,
+             inset -2px -2px grey, inset 2px 2px #fff;
+  padding:2px; display:flex; flex-direction:row; z-index:60;
+  width:170px; min-width:170px; left:-9999px
+}
+.start-menu.show { left:0 }
+/* AUI 里子元素的 flex:1/flex-grow 不生效 → 干脆用固定宽度。
+   没有侧边栏, menu-items = 170 - padding(4) = 166px 撑满 */
+.menu-items { width:166px; display:flex; flex-direction:column; padding:2px 0 }
+.menu-item {
+  display:flex; flex-direction:row; align-items:center;
+  padding:4px 12px 4px 6px; cursor:pointer; font-size:11px; white-space:nowrap
+}
+.menu-item:hover { background-color:#000080; color:#fff }
+.menu-item img { width:16px; height:16px; flex-shrink:0; margin-right:6px }
+.menu-item .mi-label { display:block }
+.menu-item.disabled { color:#808080; cursor:default }
+.menu-item.disabled:hover { background-color:transparent; color:#808080 }
+.menu-sep {
+  height:0; border-bottom:1px solid #808080; border-top:1px solid #fff; margin:3px 2px
+}
+
+/* ---- 窗口遮罩 ----
+   pointer-events:none → 遮罩空白区域点击穿透到桌面/其他窗口;
+   窗口本体 .win95-window 恢复 auto, 窗口内部交互/拖拽不受影响 */
+.window-overlay {
+  position:absolute; top:0; left:-9999px; width:100%; height:100%;
+  z-index:40; display:flex; align-items:center; justify-content:center;
+  pointer-events:none
+}
+.window-overlay.show { left:0 }
+.window-overlay .win95-window { pointer-events:auto }
+
+/* ---- Win95 窗口 (98.css box-shadow 技法) ---- */
+.win95-window {
+  background-color:#c0c0c0;
+  box-shadow:inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf,
+             inset -2px -2px grey, inset 2px 2px #fff;
+  padding:3px; display:flex; flex-direction:column
+}
+
+/* ---- 标题栏 (98.css 风格: 渐变背景 + 焦点状态) ---- */
+.win-titlebar {
+  background:linear-gradient(90deg, #000080, #1084d0);
+  color:#fff; font-family:"Pixel Sans Bold", "Pixel Sans CN"; font-weight:bold; font-size:10px;
+  padding:2px 3px; height:15px;
+  display:flex; flex-direction:row; align-items:center; justify-content:space-between
+}
+.win-titlebar.inactive {
+  background:linear-gradient(90deg, #808080, #b5b5b5)
+}
+.win-titlebar-left { display:flex; flex-direction:row; align-items:center }
+.win-titlebar-left img { width:11px; height:11px; margin-right:3px; vertical-align:middle }
+
+/* ---- 标题栏按钮组 (最小化 + 关闭) ---- */
+.win-titlebar-btns { display:flex; flex-direction:row; align-items:center }
+/* ---- 最小化按钮 ---- */
+.win-min {
+  width:15px; height:13px; background-color:#c0c0c0; cursor:pointer;
+  box-shadow:inset -1px -1px #0a0a0a, inset 1px 1px #fff,
+             inset -2px -2px grey, inset 2px 2px #dfdfdf;
+  font-size:9px; text-align:center; line-height:11px; color:#000; margin-right:1px
+}
+.win-min:active {
+  box-shadow:inset -1px -1px #fff, inset 1px 1px #0a0a0a,
+             inset -2px -2px #dfdfdf, inset 2px 2px grey
+}
+/* ---- 关闭按钮 ---- */
+.win-close {
+  width:15px; height:13px; background-color:#c0c0c0; cursor:pointer;
+  box-shadow:inset -1px -1px #0a0a0a, inset 1px 1px #fff,
+             inset -2px -2px grey, inset 2px 2px #dfdfdf;
+  font-size:9px; text-align:center; line-height:11px; color:#000
+}
+.win-close:active {
+  box-shadow:inset -1px -1px #fff, inset 1px 1px #0a0a0a,
+             inset -2px -2px #dfdfdf, inset 2px 2px grey
+}
+
+/* ---- 窗口菜单栏 ---- */
+.win-menubar {
+  background-color:#c0c0c0; padding:1px 0;
+  border-bottom:1px solid #808080; display:flex; flex-direction:row
+}
+.win-menubar span { padding:1px 6px; cursor:default; font-size:10px }
+.win-menubar span:hover { background-color:#000080; color:#fff }
+
+/* ---- 窗口主体 ---- */
+.win-body { flex:1; display:flex; flex-direction:row; overflow:hidden }
+
+/* ---- 窗口工具栏 ---- */
+.win-toolbar {
+  background-color:#c0c0c0; padding:2px 3px;
+  border-bottom:1px solid #808080; display:flex; flex-direction:row; align-items:center
+}
+.win-toolbar .addr-label { font-size:10px; margin-right:3px }
+.win-toolbar .addr-input {
+  flex:1; height:15px; padding:1px 3px; font-family:inherit; font-size:10px;
+  background-color:#fff; border:none;
+  box-shadow:inset -1px -1px #fff, inset 1px 1px grey,
+             inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a
+}
+
+/* ---- 下沉面板 (sunken-panel / 98.css 风格) ---- */
+.sunken-panel {
+  background-color:#fff;
+  box-shadow:inset -1px -1px #fff, inset 1px 1px grey,
+             inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+  overflow:hidden
+}
+
+/* ---- 侧边栏树 ---- */
+.win-tree {
+  width:107px; padding:4px 3px; overflow:hidden
+}
+.win-tree-item {
+  padding:1px 3px 1px 22px; cursor:pointer; font-size:10px;
+  display:flex; flex-direction:row; align-items:center
+}
+.win-tree-item img { width:12px; height:12px; margin-right:3px; vertical-align:middle }
+.win-tree-item:hover { background-color:#000080; color:#fff }
+.win-tree-item.selected { background-color:#000080; color:#fff }
+
+/* ---- 文件列表 ---- */
+.win-list { flex:1; padding:3px }
+.win-list-header {
+  display:flex; flex-direction:row; background-color:#c0c0c0;
+  border-bottom:1px solid #808080; padding:1px 3px 1px 23px;
+  font-family:"Pixel Sans Bold", "Pixel Sans CN"; font-weight:bold; font-size:10px; gap:16px
+}
+/* 列宽写死比例 (跟内容列一致), 大小/类型列的文本对齐 */
+.win-list-header .col-name { width:35% }
+.win-list-header .col-size { width:15%; text-align:center }
+.win-list-header .col-type { width:25% }
+/* 列表项 class 用 a5: 实测下来, AUI 会对 win-list-item/row/entry/wrow/frow 这些
+   特定类名丢子元素, 而 a5 这种随便起的类名在 overlay 里子元素能安全保留。 */
+.a5 {
+  display:flex; flex-direction:row; align-items:center;
+  padding:1px 3px 1px 23px; cursor:pointer; font-size:10px; gap:16px
+}
+.win-item-icon { width:16px; height:16px; margin-right:4px; flex-shrink:0; vertical-align:middle }
+.a5:hover { background-color:#000080; color:#fff }
+/* 列宽写死比例, 间距靠父元素 gap → 位置全静态写死, 加载后不用再调 */
+.a5 .col-name { width:35% }
+.a5 .col-size { width:15%; text-align:center }
+.a5 .col-type { width:25% }
+.a5.disabled { color:#808080; cursor:default }
+.a5.disabled:hover { background-color:transparent; color:#808080 }
+/* 列表项图标: 背景图放 CSS 类 */
+.a5.ico-floppy { background-image:url('icons/145.png') }
+.a5.ico-hdd { background-image:url('icons/182.png') }
+.a5.ico-control { background-image:url('icons/453.png') }
+.a5.ico-printer { background-image:url('icons/187.png') }
+.a5.ico-folder { background-image:url('icons/039.png') }
+.a5.ico-gear { cursor:pointer; background-image:url('icons/149.png') }
+.a5.ico-hdd, .a5.ico-control, .a5.ico-printer, .a5.ico-folder, .a5.ico-gear, .a5.ico-floppy {
+  background-size:16px 16px; background-repeat:no-repeat; background-position:left center
+}
+
+/* ---- 状态栏 (98.css 风格) ---- */
+.win-statusbar {
+  height:15px; background-color:#c0c0c0;
+  display:flex; flex-direction:row; align-items:center;
+  padding:0 2px; font-size:10px
+}
+.status-bar-field {
+  box-shadow:inset -1px -1px #dfdfdf, inset 1px 1px grey;
+  padding:1px 2px; flex-grow:1; margin:1px
+}
+.status-bar-field.sb-right {
+  background-color:#fff; flex-grow:0; margin-left:auto; padding:1px 4px
+}
+
+/* ---- 窗口初始尺寸 (缩小三分之一) ---- */
+#fileWinOverlay .win95-window { width:365px; height:213px }
+#craftWinOverlay .win95-window { width:400px; height:213px }
+#docsWinOverlay .win95-window { width:365px; height:213px }
+
+/* ---- 工作台面板 ---- */
+.craft-panel { flex:1; padding:4px; overflow:hidden }
+
+/* ---- 传输对话框 (整体缩小 1/3) ---- */
+.transfer-dlg {
+  position:absolute;
+  width:261px; max-width:94%;
+  background-color:#c0c0c0;
+  box-shadow:inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf,
+             inset -2px -2px grey, inset 2px 2px #fff;
+  padding:3px; z-index:9999; display:block; left:-9999px
+}
+.transfer-dlg.show { left:0 }
+.transfer-body { padding:9px 11px 7px 11px }
+.transfer-anim {
+  display:flex; flex-direction:row; align-items:center; justify-content:center;
+  margin:0 0 8px 0; padding:5px 0
+}
+.transfer-folder { flex-shrink:0; margin:0 4px }
+.transfer-folder img { width:21px; height:21px }
+.transfer-papers {
+  position:relative; width:67px; height:23px;
+  margin:0 3px; overflow:hidden
+}
+.transfer-paper {
+  position:absolute; top:6px; left:0; width:11px; height:11px; opacity:0
+}
+.transfer-paper img { width:11px; height:11px; display:block }
+.transfer-paper.fly.d1 { animation:flyPaper 1.8s linear 0s infinite }
+.transfer-paper.fly.d2 { animation:flyPaper 1.8s linear 0.6s infinite }
+.transfer-paper.fly.d3 { animation:flyPaper 1.8s linear 1.2s infinite }
+@keyframes flyPaper {
+  0%   { transform:translateX(0px);  opacity:0 }
+  15%  { transform:translateX(4px);  opacity:1 }
+  70%  { transform:translateX(45px); opacity:1 }
+  100% { transform:translateX(56px); opacity:0 }
+}
+.transfer-label { font-size:7px; margin:1px 0; padding-left:7px }
+.transfer-label b { font-weight:normal; color:#000 }
+
+/* ---- 进度条 (98.css 风格) ---- */
+.progress-indicator {
+  position:relative;
+  width:auto; height:15px; background-color:#c0c0c0;
+  box-shadow:inset -2px -2px #dfdfdf, inset 2px 2px grey;
+  margin:3px 4px 5px 2px; overflow:hidden;
+  padding:1px
+}
+.progress-indicator-bar {
+  position:absolute; top:6px; left:7px;
+  height:11px; width:0%;
+  background-image:repeating-linear-gradient(90deg, #000080 0px, #000080 6px, #c0c0c0 6px, #c0c0c0 7px);
+  transition:width .15s
+}
+.transfer-btns { text-align:right; margin-top:2px }
+.transfer-text { font-size:10px; color:#808080; margin:4px 0; text-align:center }
+
+/* ---- FX 覆盖层 (暗角 + CRT 横纹 + 闪烁) ---- */
+#fxOverlay {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  z-index:99999; pointer-events:none;
+  /* 四方向边缘渐变模拟暗角 + 1px/1px CRT 横纹 (repeating-linear-gradient) */
+  background-image:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0)),
+    linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.45)),
+    linear-gradient(90deg, rgba(0,0,0,0.45), rgba(0,0,0,0)),
+    linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.45)),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0 1px, transparent 1px 2px);
+  background-size: 100% 25%, 100% 25%, 25% 100%, 25% 100%, 100% 2px;
+  background-position: 0 0, 0 100%, 0 0, 100% 0, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat
+}
+
+/* ---- VHS 撕裂线 (照 vhs-tearing 抄的; AUI 没有 backdrop-filter, 用半透明亮条+横纹模拟) ---- */
+#fxTear {
+  position:absolute; left:0; width:100%; top:0; height:2px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.22) 30%, rgba(255,255,255,0.10) 70%, rgba(255,255,255,0.22)),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.28) 0 1px, transparent 1px 2px);
+  opacity:0; z-index:100000; pointer-events:none
+}
+
+/* ---- 噪点层 (照 feTurbulence 噪点抄的; AUI 不支持 SVG filter, 用预生成的 PNG 平铺) ---- */
+#fxNoise {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background-image:url('icons/noise.png');
+  background-repeat:repeat;
+  background-size:256px 256px;
+  background-position:0 0;
+  opacity:0.06;
+  z-index:100000; pointer-events:none
+}
+
+/* ---- 读 Arachne 软盘成功: 黑屏覆盖层 ---- */
+/* z-index 90000: 比窗口/对话框(≤10000)高, 比 fxOverlay(99999)低, 能盖住系统画面又保留 CRT 效果 */
+#blackout {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background-color:#000; z-index:90000; pointer-events:none; opacity:0
+}
+/* 黑屏里的对话文本 (垂直居中) */
+#blackoutText {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  text-align:center; color:#fff; font-size:13px;
+  line-height:360px; pointer-events:none; z-index:1
+}
+
+/* ---- 消息对话框 ---- */
+.msg-dlg {
+  position:absolute;
+  background-color:#c0c0c0;
+  box-shadow:inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf,
+             inset -2px -2px grey, inset 2px 2px #fff;
+  padding:3px; z-index:10000; display:block; width:130px; min-width:130px; left:-9999px
+}
+.msg-dlg.show { left:0 }
+.msg-body {
+  display:flex; flex-direction:row; align-items:flex-start;
+  padding:7px 8px 3px 8px
+}
+.msg-icon { flex-shrink:0; padding-top:1px; margin-right:5px }
+.msg-icon img { width:16px; height:16px }
+.msg-content { flex:1 }
+.msg-content p { margin:0; font-size:6px; line-height:1.4 }
+.msg-btns { text-align:center; padding:3px 8px 5px 8px }
+
+/* ---- 按钮 (98.css box-shadow 技法) ---- */
+.msg-btn {
+  font-family:inherit; font-size:6px;
+  background-color:#c0c0c0; border:none; border-radius:0;
+  box-shadow:inset -1px -1px #0a0a0a, inset 1px 1px #fff,
+             inset -2px -2px grey, inset 2px 2px #dfdfdf;
+  padding:2px 8px; cursor:pointer; min-width:30px; margin-left:3px
+}
+.msg-btn:active {
+  box-shadow:inset -1px -1px #fff, inset 1px 1px #0a0a0a,
+             inset -2px -2px #dfdfdf, inset 2px 2px grey
+}
+</style>
+<script src="gui.js"></script>

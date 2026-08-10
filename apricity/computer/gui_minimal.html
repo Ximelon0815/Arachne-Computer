@@ -1,0 +1,186 @@
+<!--
+============================================
+  gui_minimal.html - 最小测试版
+  仅保留: 桌面背景 + 桌面图标 + 底部任务栏
+  已移除: 窗口系统 / 对话框 / 开始菜单 / JS交互
+============================================
+-->
+<body>
+<!-- ====== 桌面区域 ====== -->
+<div class="desktop" id="desktopArea">
+    <div class="desktop-icon" id="iconFileMgr">
+        <div class="icon-img"><img src="icons/020.png" width="32" height="32" alt=""></div>
+        <span class="icon-label">我的电脑</span>
+    </div>
+    <div class="desktop-icon" id="iconCraft">
+        <div class="icon-img"><img src="icons/130.png" width="32" height="32" alt=""></div>
+        <span class="icon-label">工作台</span>
+    </div>
+    <div class="desktop-icon" id="iconDocs">
+        <div class="icon-img"><img src="icons/038.png" width="32" height="32" alt=""></div>
+        <span class="icon-label">文档</span>
+    </div>
+</div>
+
+<!-- ====== 底部任务栏 (纯展示, 无交互) ====== -->
+<div class="bottombar">
+    <div class="start-btn" id="btnStart"><span>开始</span></div>
+    <div class="bottombar-spacer"></div>
+    <div class="clock-box"><span class="clock-text" id="timeText">--:--</span></div>
+</div>
+
+<!-- ====== 以下功能已注释掉用于测试 ====== -->
+</body>
+
+<style>
+/* ---- 像素字体 (98.css 风格, AUI 1.1.9+) ---- */
+@font-face {
+  font-family:"Pixelated MS Sans Serif";
+  font-style:normal; font-weight:400;
+  src:url("fonts/ms_sans_serif.woff2") format("woff2")
+}
+@font-face {
+  font-family:"Pixelated MS Sans Serif";
+  font-style:normal; font-weight:700;
+  src:url("fonts/ms_sans_serif_bold.woff2") format("woff2")
+}
+
+:root {
+    --desktop: #008080;
+    --chrome: #c0c0c0;
+    --chi: #fff;
+    --clo: #808080;
+    --cdk: #000;
+    --navy: #000080;
+    --sel: #000080;
+    --selt: #fff;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #008080;
+    font-family: "Pixelated MS Sans Serif", Tahoma, 'Microsoft Sans Serif', sans-serif;
+    font-size: 11px;
+    color: #000;
+    -webkit-user-select: none;
+    user-select: none;
+    outline: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.desktop {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 24px 24px 24px 4px;
+    align-content: flex-start;
+}
+
+.desktop-icon {
+    width: 80px;
+    height: 74px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.desktop-icon.selected {
+    background: #000080;
+}
+.desktop-icon.selected .icon-label {
+    color: #fff;
+}
+
+.icon-img {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-img img {
+    width: 32px;
+    height: 32px;
+}
+
+.icon-label {
+    font-size: 11px;
+    text-align: center;
+    color: #fff;
+    max-width: 74px;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+.bottombar {
+    height: 28px;
+    background-color: #c0c0c0;
+    border-top: 1px solid #fff;
+    box-shadow: 0 -1px 0 #808080;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 2px;
+    position: relative;
+    z-index: 50;
+}
+
+.start-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    cursor: pointer;
+    background-color: #c0c0c0;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    font-weight: bold;
+    font-size: 11px;
+    height: 24px;
+}
+
+.start-btn:active, .start-btn.open {
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    padding: 3px 7px 1px 9px;
+}
+
+.bottombar-spacer {
+    flex: 1;
+}
+
+.clock-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    padding: 1px 6px;
+    background: #fff;
+}
+.clock-text {
+    font-weight: bold;
+}
+</style>
+
+<!-- ====== 无 JS（最小测试版，有意省略脚本） ====== -->
